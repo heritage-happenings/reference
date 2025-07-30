@@ -76,18 +76,16 @@ FL.toggleFileList = () => {
 
 	if ( FL.isFileListVisible ) {
 		panel.classList.add( 'visible' );
-		toggleButton.setAttribute( 'aria-expanded', 'true' );
 
 		// Ensure the panel is rendered before scrolling
-		requestAnimationFrame( () => {
+		//requestAnimationFrame( () => {
 			const activeLink = document.querySelector( '.file-list__link--active' );
 			if ( activeLink ) {
 				activeLink.scrollIntoView( { block: 'nearest', behavior: 'smooth' } );
 			}
-		} );
+		//} );
 	} else {
 		panel.classList.remove( 'visible' );
-		toggleButton.setAttribute( 'aria-expanded', 'false' );
 	}
 };
 
@@ -110,37 +108,37 @@ FL.onClick = ( e ) => {
 	}
 };
 
-FL.updateActiveLink = () => {
-	// Remove active state from the previous link
-	const currentActive = document.querySelector( '.file-list__link--active' );
-	if ( currentActive ) {
-		currentActive.classList.remove( 'file-list__link--active' );
-	}
+// FL.updateActiveLink = () => {
+// 	// Remove active state from the previous link
+// 	const currentActive = document.querySelector( '.file-list__link--active' );
+// 	if ( currentActive ) {
+// 		currentActive.classList.remove( 'file-list__link--active' );
+// 	}
 
-	// Add active state to the current link
-	const newActive = document.querySelector( `.file-list__link[href="${ location.hash }"]` );
-	if ( newActive ) {
-		newActive.classList.add( 'file-list__link--active' );
-	}
-};
+// 	// Add active state to the current link
+// 	const newActive = document.querySelector( `.file-list__link[href="${ location.hash }"]` );
+// 	if ( newActive ) {
+// 		newActive.classList.add( 'file-list__link--active' );
+// 	}
+// };
 
-FL.loadAdjacentFile = ( direction ) => {
+// FL.loadAdjacentFile = ( direction ) => {
 
-	const currentHash = location.hash.slice( 1 );
-	const currentIndex = FL.files.findIndex( file => file.path === currentHash );
+// 	const currentHash = location.hash.slice( 1 );
+// 	const currentIndex = FL.files.findIndex( file => file.path === currentHash );
 
-	if ( currentIndex !== -1 ) {
-		let newIndex = currentIndex + direction;
+// 	if ( currentIndex !== -1 ) {
+// 		let newIndex = currentIndex + direction;
 
-		if ( newIndex < 0 ) {
-			newIndex = FL.files.length - 1;
-		} else if ( newIndex >= FL.files.length ) {
-			newIndex = 0;
-		}
+// 		if ( newIndex < 0 ) {
+// 			newIndex = FL.files.length - 1;
+// 		} else if ( newIndex >= FL.files.length ) {
+// 			newIndex = 0;
+// 		}
 
-		const newPath = FL.files[ newIndex ].path;
-		location.hash = newPath;
-	}
-};
+// 		const newPath = FL.files[ newIndex ].path;
+// 		location.hash = newPath;
+// 	}
+// };
 
 window.addEventListener( "load", FL.init );

@@ -6,7 +6,7 @@ window.FH = FH; // Make FH globally accessible
 FH.defaultFile = "2025/07/README.md";
 
 
-FH.init = async () => {
+FH.init = () => {
 
 	showdown.setFlavor( "github" );
 
@@ -30,24 +30,24 @@ FH.init = async () => {
 		window.history.pushState( "", "", "../../" + location.hash );
 	}
 
-	const main = document.getElementById("main");
-	SWIPE.init(main);
-	main.addEventListener('swipe-left', () => FL.loadAdjacentFile(1));
-	main.addEventListener('swipe-right', () => FL.loadAdjacentFile(-1));
+	//const main = document.getElementById("main");
+
+	// SWIPE.init(main);
+
+	// main.addEventListener('swipe-left', () => FL.loadAdjacentFile(1));
+	// main.addEventListener('swipe-right', () => FL.loadAdjacentFile(-1));
 
 };
-
-
-
 
 
 FH.onHashChange = async () => {
 
 	if ( !location.hash.includes( "." ) ) { return; }
 
-	const url = "../../Blog/" + location.hash.slice( 1 );
+	const hash = location.hash.slice( 1 );
+	const url = "../../Blog/" + hash;
 
-	const txt = url.split( "/" ).pop();
+	const txt = hash.split( "/" ).pop();
 	const title = txt
 		.replace( /\.md$/i, '' )
 		.split( "-" )
@@ -125,7 +125,6 @@ FH.loadAdjacentFile = ( direction ) => {
 		location.hash = newPath;
 	}
 };
-
 
 
 window.addEventListener( "load", FH.init );
