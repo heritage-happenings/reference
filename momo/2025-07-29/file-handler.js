@@ -14,11 +14,17 @@ FH.init = async () => {
 		location.hash = FH.defaultFile;
 	}
 
-	if ( location.hash === "#Home") { location.hash = ""; }
+	if ( location.hash === "#Home") { location.hash = ""; } // load TooToo
 
 	FH.onHashChange();
 
 	window.addEventListener( "hashchange", FH.onHashChange, false );
+
+	if ( location.hash.slice(1) === FH.defaultFile ) {
+		location.hash = "";
+	} else {
+		location.hash = FH.defaultFile;
+	}
 
 	if ( location.protocol === "https:" ) {
 		window.history.pushState( "", "", "../../" + location.hash );
