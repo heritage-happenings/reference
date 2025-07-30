@@ -30,6 +30,13 @@ FH.init = () => {
 		window.history.pushState( "", "", "../../" + location.hash );
 	}
 
+	//const main = document.getElementById("main");
+
+	// SWIPE.init(main);
+
+	// main.addEventListener('swipe-left', () => FL.loadAdjacentFile(1));
+	// main.addEventListener('swipe-right', () => FL.loadAdjacentFile(-1));
+
 };
 
 
@@ -83,6 +90,7 @@ FH.onHashChange = async () => {
 };
 
 
+
 FH.updateActiveLink = () => {
 	// Remove active state from the previous link
 	const currentActive = document.querySelector( '.file-list__link--active' );
@@ -96,6 +104,7 @@ FH.updateActiveLink = () => {
 		newActive.classList.add( 'file-list__link--active' );
 	}
 };
+
 
 
 FH.loadAdjacentFile = ( direction ) => {

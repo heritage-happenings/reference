@@ -6,7 +6,6 @@ const TTS = {
     observer: null
 };
 
-
 TTS.init = () => {
     const button = document.getElementById('read-aloud-button');
     if (!button || !('speechSynthesis' in window)) {
@@ -29,7 +28,6 @@ TTS.init = () => {
     }
 };
 
-
 TTS.speak = (text) => {
     if (!text?.trim()) return;
 
@@ -43,7 +41,6 @@ TTS.speak = (text) => {
     TTS.speechSynthesis.speak(utterance);
 };
 
-
 TTS.updateState = (speaking, button) => {
     TTS.isSpeaking = speaking;
     if (button) {
@@ -51,12 +48,10 @@ TTS.updateState = (speaking, button) => {
    }
 };
 
-
 TTS.cancel = () => {
     TTS.speechSynthesis?.cancel();
     TTS.updateState(false, document.getElementById('read-aloud-button'));
 };
-
 
 TTS.toggle = () => {
     if (TTS.isSpeaking) {

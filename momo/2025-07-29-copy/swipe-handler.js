@@ -12,7 +12,7 @@ SWIPE.init = () => {
 
 	const element = document.getElementById("main")
 	SWIPE.element = element;
-
+	
 	element.addEventListener('swipe-left', () => SWIPE.loadAdjacentFile(1));
 	element.addEventListener('swipe-right', () => SWIPE.loadAdjacentFile(-1));
 
@@ -23,17 +23,14 @@ SWIPE.init = () => {
 	element.addEventListener("mouseleave", SWIPE.handleMouseLeave, { passive: true });
 };
 
-
 SWIPE.handleTouchStart = (e) => {
 	SWIPE.touchStartX = e.changedTouches[0].screenX;
 };
-
 
 SWIPE.handleTouchEnd = (e) => {
 	SWIPE.touchEndX = e.changedTouches[0].screenX;
 	SWIPE.handleTouchSwipe();
 };
-
 
 SWIPE.handleTouchSwipe = () => {
 	const deltaX = SWIPE.touchEndX - SWIPE.touchStartX;
@@ -48,13 +45,11 @@ SWIPE.handleTouchSwipe = () => {
 	}
 };
 
-
 SWIPE.handleMouseDown = (e) => {
 	SWIPE.isDragging = true;
 	SWIPE.mouseStartX = e.screenX;
 	e.preventDefault();
 };
-
 
 SWIPE.handleMouseUp = (e) => {
 	if (!SWIPE.isDragging) return;
@@ -63,13 +58,11 @@ SWIPE.handleMouseUp = (e) => {
 	SWIPE.handleMouseSwipe(mouseEndX);
 };
 
-
 SWIPE.handleMouseLeave = (e) => {
 	if (SWIPE.isDragging) {
 		SWIPE.handleMouseUp(e);
 	}
 };
-
 
 SWIPE.handleMouseSwipe = (mouseEndX) => {
 	const deltaX = mouseEndX - SWIPE.mouseStartX;
@@ -83,7 +76,6 @@ SWIPE.handleMouseSwipe = (mouseEndX) => {
 		}
 	}
 };
-
 
 SWIPE.loadAdjacentFile = (direction) => {
 	const currentHash = location.hash.slice(1) === "" ? FH.defaultFile : location.hash.slice(1);
@@ -103,6 +95,5 @@ SWIPE.loadAdjacentFile = (direction) => {
 		location.hash = newPath;
 	}
 };
-
 
 window.addEventListener('load', SWIPE.init);
